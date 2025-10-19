@@ -1,6 +1,5 @@
 import Image from "next/image";
 import CTAButton from "@/components/CTAButton";
-import Section from "@/components/Section";
 import Reveal from "@/components/Reveal";
 import HeroCarousel from "@/components/HeroCarousel";
 import ParallaxSection from "@/components/ParallaxSection";
@@ -8,15 +7,6 @@ import ProfitCalculator from "@/components/ProfitCalculator";
 import BackToTop from "@/components/BackToTop";
 
 export default function Home() {
-  const accentColors = [
-    "#C1121F", // Crimson Blaze
-    "#669BBC", // Blue Marble
-    "#003049", // Cosmos Blue
-    "#780000", // Gochujang Red
-    "#AE1F25", // Varden
-  ];
-  const priceNumber = 1250;
-  const priceText = `Rp.${priceNumber.toLocaleString("id-ID")}.00/pcs`;
   return (
     <main>
       {/* Hero - Style dengan Cosmos Blue background */}
