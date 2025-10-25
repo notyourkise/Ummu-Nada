@@ -95,8 +95,6 @@ export default function NavBar() {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden flex flex-col gap-1.5 p-2"
               aria-label="Toggle menu"
-              aria-expanded={mobileMenuOpen}
-              aria-controls="mobile-menu"
             >
               <span
                 className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
@@ -120,40 +118,35 @@ export default function NavBar() {
 
       {/* Backdrop - Click outside to close */}
       {mobileMenuOpen && (
-        <button
-          // backdrop as a button so it can receive keyboard focus and be activated
+        <div
           className="md:hidden fixed inset-0 bg-black/50 z-30 transition-opacity duration-300"
           onClick={() => setMobileMenuOpen(false)}
-          aria-label="Tutup menu"
-          onKeyDown={(e) => {
-            // allow closing with Enter or Space
-            if (e.key === "Enter" || e.key === " ") setMobileMenuOpen(false);
-            // allow Escape to close as well
-            if (e.key === "Escape") setMobileMenuOpen(false);
-          }}
+          aria-label="Close menu"
         />
       )}
 
       {/* Mobile Menu Overlay - Compact dropdown style */}
       <div
-        id="mobile-menu"
-        aria-hidden={!mobileMenuOpen}
         className={`md:hidden fixed left-0 right-0 top-20 bg-gradient-to-b from-[#003049] to-[#004060] z-40 shadow-2xl transition-all duration-300 ease-in-out ${
           mobileMenuOpen
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-4 pointer-events-none"
         }`}
       >
-        <nav className="px-6 py-6 space-y-2" aria-label="Mobile">
+        <nav className="px-6 py-6 space-y-2">
           {links.map((l, index) => (
             <a
               key={`mobile-${l.href}-${l.label}`}
               href={l.href}
               onClick={(e) => handleClick(e, l.href)}
-              className={`block py-3 px-4 ...`}
-              style={{ transitionDelay: mobileMenuOpen ? `${index * 80}ms` : "0ms" }}
-              tabIndex={mobileMenuOpen ? 0 : -1}    // <-- penting
-              aria-hidden={!mobileMenuOpen}
+              className={`block py-3 px-4 text-white/90 font-medium hover:bg-white/10 hover:text-sky-400 rounded-lg transition-all duration-300 ${
+                mobileMenuOpen
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 translate-x-full"
+              }`}
+              style={{
+                transitionDelay: mobileMenuOpen ? `${index * 80}ms` : "0ms",
+              }}
             >
               {l.label}
             </a>

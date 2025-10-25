@@ -90,8 +90,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* Skip link for keyboard users */}
-        <a href="#content" className="skip-link sr-only-focusable">Lewati ke konten</a>
         <SmoothScrolling />
         <NavBar />
         {children}
