@@ -95,6 +95,9 @@ export default function NavBar() {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden flex flex-col gap-1.5 p-2"
               aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu"
+              type="button"
             >
               <span
                 className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
@@ -118,7 +121,8 @@ export default function NavBar() {
 
       {/* Backdrop - Click outside to close */}
       {mobileMenuOpen && (
-        <div
+        <button
+          type="button"
           className="md:hidden fixed inset-0 bg-black/50 z-30 transition-opacity duration-300"
           onClick={() => setMobileMenuOpen(false)}
           aria-label="Close menu"
@@ -127,6 +131,8 @@ export default function NavBar() {
 
       {/* Mobile Menu Overlay - Compact dropdown style */}
       <div
+        id="mobile-menu"
+        aria-hidden={!mobileMenuOpen}
         className={`md:hidden fixed left-0 right-0 top-20 bg-gradient-to-b from-[#003049] to-[#004060] z-40 shadow-2xl transition-all duration-300 ease-in-out ${
           mobileMenuOpen
             ? "opacity-100 translate-y-0"
@@ -139,6 +145,7 @@ export default function NavBar() {
               key={`mobile-${l.href}-${l.label}`}
               href={l.href}
               onClick={(e) => handleClick(e, l.href)}
+              tabIndex={mobileMenuOpen ? 0 : -1}
               className={`block py-3 px-4 text-white/90 font-medium hover:bg-white/10 hover:text-sky-400 rounded-lg transition-all duration-300 ${
                 mobileMenuOpen
                   ? "opacity-100 translate-x-0"
@@ -157,6 +164,7 @@ export default function NavBar() {
             href="https://wa.me/6281254711633"
             target="_blank"
             rel="noopener noreferrer"
+            tabIndex={mobileMenuOpen ? 0 : -1}
             className={`block mt-4 py-3 px-4 bg-gradient-to-r from-[#C1121F] to-[#8B0000] text-white font-semibold text-center rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ${
               mobileMenuOpen
                 ? "opacity-100 translate-x-0 scale-100"
