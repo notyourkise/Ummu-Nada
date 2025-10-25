@@ -128,6 +128,7 @@ export default function Footer() {
                   href="https://instagram.com/ummunada"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Instagram Ummu Nada"
                   className="text-sm text-white/80 hover:text-pink-400 transition-colors inline-flex items-center gap-2 group"
                 >
                   <svg

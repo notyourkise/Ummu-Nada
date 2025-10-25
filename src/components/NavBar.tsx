@@ -150,14 +150,10 @@ export default function NavBar() {
               key={`mobile-${l.href}-${l.label}`}
               href={l.href}
               onClick={(e) => handleClick(e, l.href)}
-              className={`block py-3 px-4 text-white/90 font-medium hover:bg-white/10 hover:text-sky-400 rounded-lg transition-all duration-300 ${
-                mobileMenuOpen
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 translate-x-full"
-              }`}
-              style={{
-                transitionDelay: mobileMenuOpen ? `${index * 80}ms` : "0ms",
-              }}
+              className={`block py-3 px-4 ...`}
+              style={{ transitionDelay: mobileMenuOpen ? `${index * 80}ms` : "0ms" }}
+              tabIndex={mobileMenuOpen ? 0 : -1}    // <-- penting
+              aria-hidden={!mobileMenuOpen}
             >
               {l.label}
             </a>
