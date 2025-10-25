@@ -1,11 +1,26 @@
 import Image from "next/image";
 import CTAButton from "@/components/CTAButton";
 import Reveal from "@/components/Reveal";
-import HeroCarousel from "@/components/HeroCarousel";
+import dynamic from "next/dynamic";
 import ParallaxSection from "@/components/ParallaxSection";
-import ProfitCalculator from "@/components/ProfitCalculator";
 import BackToTop from "@/components/BackToTop";
 import LazyMap from "@/components/LazyMap";
+
+// Dynamically import heavier interactive components to keep initial
+// server/client bundle small. These components will load only on the
+// client, reducing initial JS sent to desktop users and improving
+// Lighthouse/Performance metrics.
+const HeroCarousel = dynamic(() => import("@/components/HeroCarousel"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full bg-[#f3f4f6] rounded-2xl animate-pulse" />
+  ),
+});
+
+const ProfitCalculator = dynamic(
+  () => import("@/components/ProfitCalculator"),
+  { ssr: false, loading: () => <div className="h-12" /> }
+);
 
 export default function Home() {
   return (
