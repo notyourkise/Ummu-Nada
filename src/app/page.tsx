@@ -5,6 +5,7 @@ import HeroCarousel from "@/components/HeroCarousel";
 import ParallaxSection from "@/components/ParallaxSection";
 import ProfitCalculator from "@/components/ProfitCalculator";
 import BackToTop from "@/components/BackToTop";
+import LazyMap from "@/components/LazyMap";
 
 export default function Home() {
   return (
@@ -1250,21 +1251,16 @@ export default function Home() {
             {/* Google Maps */}
             <Reveal>
               <div className="bg-white rounded-2xl shadow-xl p-3 h-full min-h-[450px]">
-                <iframe
+                {/* Lazy-load the Google Maps iframe to avoid loading maps scripts
+                    until the user scrolls near the map or clicks to load. This
+                    reduces initial JS and layout work that PageSpeed flags as
+                    forced geometry/position changes. */}
+                <LazyMap
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.0626871899173!2d116.8557864!3d-1.2035229!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df14934e3b10dfb%3A0x4019c8c76e022d49!2sANEKA%20KUE%20MURAH%20UMMU%20NADA!5e0!3m2!1sid!2sid!4v1729425000000!5m2!1sid!2sid"
-                  width="100%"
-                  height="100%"
-                  style={{
-                    border: 0,
-                    borderRadius: "1rem",
-                    minHeight: "420px",
-                  }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
                   title="Lokasi ANEKA KUE MURAH UMMU NADA"
                   className="rounded-xl"
-                ></iframe>
+                  style={{ borderRadius: "1rem", minHeight: "420px", height: "100%" }}
+                />
               </div>
             </Reveal>
           </div>

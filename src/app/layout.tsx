@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
@@ -90,6 +91,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* Load minimal polyfills only for browsers that need them. Using
+            polyfill.io ensures modern browsers receive no extra bytes while
+            older browsers get required shims. This is the safest approach to
+            reduce bundle-included polyfills without breaking legacy users. */}
+        <Script
+          src="https://polyfill.io/v3/polyfill.min.js?features=Array.prototype.flat,Array.prototype.flatMap,Object.fromEntries,String.prototype.trimStart,String.prototype.trimEnd,Object.hasOwn"
+          strategy="beforeInteractive"
+        />
         <SmoothScrolling />
         <NavBar />
         {children}
